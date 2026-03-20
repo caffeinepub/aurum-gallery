@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* Parchment background */
+    --background: 0.96 0.018 88;
+    --foreground: 0.13 0.008 60;
+
+    /* Cards */
+    --card: 0.965 0.016 88;
+    --card-foreground: 0.13 0.008 60;
+    --popover: 0.965 0.016 88;
+    --popover-foreground: 0.13 0.008 60;
+
+    /* Deep gold primary */
+    --primary: 0.54 0.115 73;
+    --primary-foreground: 0.97 0.012 88;
+
+    --secondary: 0.92 0.022 86;
+    --secondary-foreground: 0.13 0.008 60;
+
+    --muted: 0.92 0.016 87;
+    --muted-foreground: 0.52 0.03 74;
+
+    --accent: 0.74 0.08 78;
+    --accent-foreground: 0.97 0.012 88;
+
+    --destructive: 0.577 0.245 27;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.86 0.02 82;
+    --input: 0.86 0.02 82;
+    --ring: 0.54 0.115 73;
+
+    --chart-1: 0.54 0.115 73;
+    --chart-2: 0.48 0.09 68;
+    --chart-3: 0.64 0.08 78;
+    --chart-4: 0.72 0.06 82;
+    --chart-5: 0.4 0.09 66;
+
+    --sidebar: 0.94 0.02 87;
+    --sidebar-foreground: 0.13 0.008 60;
+    --sidebar-primary: 0.54 0.115 73;
+    --sidebar-primary-foreground: 0.97 0.012 88;
+    --sidebar-accent: 0.9 0.018 85;
+    --sidebar-accent-foreground: 0.13 0.008 60;
+    --sidebar-border: 0.86 0.02 82;
+    --sidebar-ring: 0.54 0.115 73;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Playfair Display", Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.94 0.016 87);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.72 0.06 78);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.54 0.115 73);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-body {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* Film grain texture overlay */
+  .film-grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.055'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .glass-card {
+    background: rgba(245, 240, 232, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(184, 134, 11, 0.22);
+  }
+
+  .vintage-border {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.18), 0 2px 6px
+      rgba(0, 0, 0, 0.12);
+    border: 2px solid oklch(0.84 0.02 83);
+  }
+}
+
+@keyframes waveBar {
+  from {
+    transform: scaleY(0.6);
+  }
+  to {
+    transform: scaleY(1.15);
+  }
+}
+
+@keyframes recBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes recPulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.rec-blink {
+  animation: recBlink 1s ease-in-out infinite;
+}
+
+.rec-pulse {
+  animation: recPulse 1.5s ease-in-out infinite;
+}
